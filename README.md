@@ -1,6 +1,16 @@
 # Description
 
-TODO
+ - Create a Pimcore Image Thumbnail Config
+ - Add following to a symfony config (eg. /app/config/config.yml)
+ 
+```yaml
+api_thumbnails:
+    thumbnails:
+        thumb_x: "PATH/TO/WHERE/IT/SHOULD/GET/STORED. eg:"
+        thumb_y: "web/var/thumbnails"
+```
+
+Run Command `bin/console synoa:thumbnails:generate` to generate all images. If images gets added or updated, they will get created automatically.
 
 # Installation
 
