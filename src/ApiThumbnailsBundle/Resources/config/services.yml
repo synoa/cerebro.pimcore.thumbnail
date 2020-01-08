@@ -1,0 +1,17 @@
+services:
+    ApiThumbnailsBundle\ThumbnailGeneratorInterface: '@ApiThumbnailsBundle\ThumbnailGenerator'
+    ApiThumbnailsBundle\ThumbnailGenerator:
+        arguments:
+            - '%synoa.thumbails%'
+
+    ApiThumbnailsBundle\EventListener\ImageThumbnailGenerationListener:
+        arguments:
+            - '@ApiThumbnailsBundle\ThumbnailGeneratorInterface'
+        tags:
+            - { name: kernel.event_subscriber }
+
+    ApiThumbnailsBundle\Command\GenerateThumbnailsCommand:
+        arguments:
+            - '@ApiThumbnailsBundle\ThumbnailGeneratorInterface'
+        tags:
+            - { name: console.command, command: synoa:thumbnails:generate }
