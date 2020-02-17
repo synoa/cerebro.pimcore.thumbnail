@@ -35,8 +35,11 @@ class ThumbnailGenerator implements ThumbnailGeneratorInterface
         $fileInfo = new \SplFileInfo($pimcorePath);
         $fileExtension = $fileInfo->getExtension();
 
+        $originalFileInfo = new \SplFileInfo($image->getFileSystemPath());
+        $originalFilenameWithoutExtension = pathinfo($originalFileInfo->getFilename(), PATHINFO_FILENAME);
+
         $thumbnailFolderPath = sprintf('%s/%s/%s', PIMCORE_PROJECT_ROOT, $path, $config->getName());
-        $thumbnailFilePath = sprintf('%s/%s.%s', $thumbnailFolderPath, $image->getId(), $fileExtension);
+        $thumbnailFilePath = sprintf('%s/%s.%s', $thumbnailFolderPath, $originalFilenameWithoutExtension, $fileExtension);
 
         //No-Change detected
         if (file_exists($thumbnailFilePath) && file_exists($pimcorePath) && filemtime($pimcorePath) < filemtime($thumbnailFilePath)) {
