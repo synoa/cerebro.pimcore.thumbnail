@@ -42,6 +42,6 @@ class ImageThumbnailGenerationListener implements EventSubscriberInterface
 
     protected function updateImageThumbnails(Image $image)
     {
-        //$this->generator->generateThumbnails($image);
+        $this->generator->generateThumbnails($image);
     }
 }
