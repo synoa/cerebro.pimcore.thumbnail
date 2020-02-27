@@ -1,7 +1,6 @@
 {
   "name": "synoa/apithumbnails",
   "description": "",
-  "version": "1.0.0",
   "type": "pimcore-bundle",
   "require": {
     "pimcore/pimcore": "^5.7.0||^6.0.0",
