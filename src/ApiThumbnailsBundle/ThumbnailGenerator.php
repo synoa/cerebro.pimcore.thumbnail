@@ -16,14 +16,16 @@ class ThumbnailGenerator implements ThumbnailGeneratorInterface
 
     public function generateThumbnails(Image $image)
     {
-        foreach ($this->config as $configName => $path) {
-            $config = Image\Thumbnail\Config::getByName($configName);
+        foreach ($this->config as $configName => $config) {
+            $thumbConfig = Image\Thumbnail\Config::getByName($configName);
 
-            if (!$config) {
+            if (!$thumbConfig) {
                 continue;
             }
 
-            $this->createThumbnail($image, $config, $path);
+            if (strpos($image->getFullPath(), $config['asset_dir']) === 0) {
+                $this->createThumbnail($image, $thumbConfig, $config['generation_dir']);
+            }
         }
     }
 

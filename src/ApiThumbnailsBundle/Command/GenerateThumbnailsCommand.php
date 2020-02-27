@@ -60,7 +60,12 @@ class GenerateThumbnailsCommand extends AbstractCommand
             $progress->setMessage(sprintf('Generate Image %s (%s)', $image->getFullPath(), $image->getId()));
             $progress->advance();
 
-            $this->generator->generateThumbnails($image);
+            try {
+                $this->generator->generateThumbnails($image);
+            }
+            catch (\Exception $ex) {
+                //Ignore and continue
+            }
         }
 
         return 0;

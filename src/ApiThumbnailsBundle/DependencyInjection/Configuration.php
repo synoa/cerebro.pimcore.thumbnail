@@ -12,15 +12,20 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder('api_thumbnails');
-
-        $treeBuilder->getRootNode()
-        ->children()
-            ->arrayNode('thumbnails')
-                    ->useAttributeAsKey('name')
-                    ->prototype('scalar')->end()
+        $treeBuilder = new TreeBuilder('changeme');
+        $rootNode = $treeBuilder->getRootNode();
+        $rootNode
+            ->children()
+                ->arrayNode('thumbnails')
+                    ->useAttributeAsKey('thumbnail')
+                    ->prototype('array')
+                        ->children()
+                            ->scalarNode('asset_dir')->isRequired()->end()
+                            ->scalarNode('generation_dir')->isRequired()->end()
+                        ->end()
+                    ->end()
                 ->end()
-        ->end();
+            ->end();
 
         return $treeBuilder;
     }
