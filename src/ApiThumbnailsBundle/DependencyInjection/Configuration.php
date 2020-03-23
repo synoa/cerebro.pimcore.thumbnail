@@ -12,7 +12,7 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder('changeme');
+        $treeBuilder = new TreeBuilder('api_thumbnails');
         $rootNode = $treeBuilder->getRootNode();
         $rootNode
             ->children()
